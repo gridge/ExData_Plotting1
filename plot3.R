@@ -11,6 +11,11 @@ plot3 <- function() {
   pwr$Time <- strptime(paste(pwr$Date, pwr$Time), format="%Y-%m-%d %H:%M:%S")
   
   print("Plotting")
+  #The following command is platform-specific, 
+  # it is used to ensure a new window in case running multiple plot scripts in the same session
+  #If running on another platform (non-Unix) adapt or just remove it
+  x11() #Note: platform-specific
+  
   plot(x=pwr$Time, y=pwr$Sub_metering_1, col="black", ylab="Energy sub-metering", xlab="Time",type="l",ylim=c(0,40))
   par(new=T)
   plot(x=pwr$Time, y=pwr$Sub_metering_2, col="red", ylab="Energy sub-metering", xlab="Time",type="l",ylim=c(0,40))

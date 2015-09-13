@@ -11,6 +11,11 @@ plot2 <- function() {
   pwr$Time <- strptime(paste(pwr$Date, pwr$Time), format="%Y-%m-%d %H:%M:%S")
   
   print("Plotting")
+  #The following command is platform-specific, 
+  # it is used to ensure a new window in case running multiple plot scripts in the same session
+  #If running on another platform (non-Unix) adapt or just remove it
+  x11() #Note: platform-specific
+  
   plot(x=pwr$Time, y=pwr$Global_active_power, col="blue", ylab="Global active power (kW)", xlab="Time",type="l")
   
   print(paste("Selected rows:" , nrow(pwr), "/", nrow(pwr_full)))

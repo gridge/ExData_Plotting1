@@ -9,10 +9,15 @@ plot1 <- function() {
   pwr <- subset(pwr_full, (pwr_full$Date >= "2007-02-01") & (pwr_full$Date <= "2007-02-02"))
   
   print("Plotting")
+  #The following command is platform-specific, 
+  # it is used to ensure a new window in case running multiple plot scripts in the same session
+  #If running on another platform (non-Unix) adapt or just remove it
+  x11() #Note: platform-specific
+  
   hist(pwr$Global_active_power, main="Global Active power", col="blue",xlab="Global active power (kW)", ylab="Frequency")
   
   print(paste("Selected rows:" , nrow(pwr), "/", nrow(pwr_full)))
   
-  dev.copy(png, file="plot1.png")
+  dev.copy(png, file="plot1.png",width=480,height=480)
   dev.off()
 }
